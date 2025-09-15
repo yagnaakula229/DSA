@@ -1,5 +1,10 @@
 class Solution {
     public boolean isAnagram(String s, String t) {
+
+
+        // efficient 
+
+
         if(s.length()!=t.length()){
             return false;
         }
@@ -18,6 +23,16 @@ class Solution {
 
         for(int i=0;i<s.length();i++){
             char ch1 = s.charAt(i);
+
+
+            /*!= compares memory addresses (references) of two objects.
+
+Even if two Integers have the same value (say 2), they might be stored in different memory locations.
+
+So hm1.get(ch1) != hm2.get(ch1) might give true (wrongly saying they’re different).*/
+
+
+
             if( !hm2.containsKey(ch1) || !hm1.get(ch1).equals(hm2.get(ch1))){
                 return false;
             }
@@ -27,5 +42,10 @@ class Solution {
 
         }
         return true;
+
+
+
+        // another approach 
+        // sort and check if they are equal
     }
 }
