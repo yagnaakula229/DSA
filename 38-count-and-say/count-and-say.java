@@ -1,7 +1,11 @@
 class Solution {
    
 
+
     public String countAndSay(int n) {
+
+
+        // https://www.youtube.com/watch?v=5uJitfSM3vk
        if(n==1){
         return "1";
        }
