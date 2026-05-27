@@ -27,30 +27,52 @@ class Solution {
 
     // Tabulation 
 
-    public static int solve(int n ,List<Integer> ar,int[] dp){
-       
+    // public static int solve(int n ,List<Integer> ar,int[] dp){
+    //     dp[0] = ar.get(0);
+     
+    //     // dp[1] = Math.max(ar.get(0), ar.get(1));
+    //     int pick = 0, notPick=0;
+    //     for(int i=1;i<ar.size();i++){
+    //         if(i-2 >= 0)
+    //          pick = ar.get(i) + dp[i-2];
+    //         else
+    //         pick = ar.get(i);
+    //         if(i-1>=0)
+    //         notPick = 0 + dp[i-1];
 
-        dp[0] = ar.get(0);
+    //     dp[i] = Math.max(pick,notPick);
+    //     }
+    //     return dp[n];
+    // }
+
+//Space Optimization 
+
+public static int solve(int n ,List<Integer> ar,int[] dp){
+       
      
         // dp[1] = Math.max(ar.get(0), ar.get(1));
         int pick = 0, notPick=0;
+        int curr=0,prev1=0,prev2=0;
+
+        prev1=ar.get(0);
+
         for(int i=1;i<ar.size();i++){
             if(i-2 >= 0)
-             pick = ar.get(i) + dp[i-2];
+             pick = ar.get(i) + prev2;
             else
             pick = ar.get(i);
-
             if(i-1>=0)
-            notPick = 0 + dp[i-1];
+            notPick = 0 + prev1;
 
-        dp[i] = Math.max(pick,notPick);
-
+        curr = Math.max(pick,notPick);
+        prev2=prev1;
+        prev1=curr;
         }
-        
-
-
-        return dp[n];
+        return prev1;
     }
+
+
+
 
     public int rob(int[] nums) {
     //     [2,3,2]
