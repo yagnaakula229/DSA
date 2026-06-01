@@ -13,24 +13,57 @@
  *     }
  * }
  */
-class Solution {
+// class Solution {
 
-    public List<Integer> preorder(TreeNode root,List<Integer> ls) {
-        if(root == null ){
-            return ls ;
+//     public List<Integer> preorder(TreeNode root,List<Integer> ls) {
+//         if(root == null ){
+//             return ls ;
+//         }
+
+//         ls.add(root.val);
+//         preorder(root.left,ls);
+//         preorder(root.right,ls);
+
+//         return ls;
+//     }
+//     public List<Integer> preorderTraversal(TreeNode root) {
+//         List<Integer> ls = new ArrayList<>();
+
+//         return preorder(root,ls);
+
+
+//     }
+// }
+
+
+
+class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+
+        List<Integer> ans = new ArrayList<>();
+
+        if (root == null) {
+            return ans;
         }
 
-        ls.add(root.val);
-        preorder(root.left,ls);
-        preorder(root.right,ls);
+        Stack<TreeNode> st = new Stack<>();
+        st.push(root);
 
-        return ls;
-    }
-    public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> ls = new ArrayList<>();
+        while (!st.isEmpty()) {
 
-        return preorder(root,ls);
+            TreeNode node = st.pop();
 
+            ans.add(node.val);
 
+            if (node.right != null) {
+                st.push(node.right);
+            }
+
+            if (node.left != null) {
+                st.push(node.left);
+            }
+        }
+
+        return ans;
     }
 }
